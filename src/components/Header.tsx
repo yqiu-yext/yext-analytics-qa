@@ -57,8 +57,11 @@ const Header = ({ data }: HeaderProps) => {
           {/* <Link className="hover:underline hover:text-blue-500" href="/stores">
             Po
           </Link> */}
-          <a className="tracking-wide font-bold flex space-x-3 border p-3 bg-gray-200 rounded-md shadow-sm hover:bg-gray-300" href="https://github.com/lymarrie/yext-analytics-qa"><div>View Source Code</div><Code size={24} /></a>
-          {/* </div> */}
+          <AnalyticsScopeProvider name="sourcecode">
+            <div>
+              <a className="tracking-wide font-bold flex space-x-3 border p-3 bg-gray-200 rounded-md shadow-sm hover:bg-gray-300" href="https://github.com/lymarrie/yext-analytics-qa"><div>View Source Code</div><Code size={24} /></a>
+            </div>
+          </AnalyticsScopeProvider>
         </nav>
       </header>
     </AnalyticsScopeProvider>
