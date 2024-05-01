@@ -6,6 +6,7 @@ import { Image } from "@yext/pages-components";
 import { BiCaretRightCircle, BiCaretLeftCircle } from "react-icons/bi";
 import Slider from "react-slick";
 import { getRuntime, isProduction } from "@yext/pages/util";
+import { useDocument } from "../hooks/useDocument";
 
 export interface CarouselProps {
   title?: string;
@@ -50,7 +51,10 @@ const PrevArrow = ({ className, style, onClick }: ArrowProps) => {
   );
 };
 
-const Carousel = ({ title, photoGallery }: CarouselProps) => {
+const Carousel = ({}: CarouselProps) => {
+    const document = useDocument<any>();
+    let photoGallery = document.photoGallery;
+    // const title = "";
   let dummyPhotos = [
     {
       test: true,
@@ -108,7 +112,7 @@ const Carousel = ({ title, photoGallery }: CarouselProps) => {
     dots: true,
     arrows: true,
     infinite: true,
-    speed: 300,
+    speed: 500,
     slidesToShow: 3,
     slidesToScroll: 1,
     initialSlide: 0,
@@ -120,21 +124,21 @@ const Carousel = ({ title, photoGallery }: CarouselProps) => {
       {
         breakpoint: 1280,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 1024,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
         },
       },
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: 1,
           slidesToScroll: 1,
           swipeToSlide: true,
         },
@@ -151,25 +155,17 @@ const Carousel = ({ title, photoGallery }: CarouselProps) => {
     ],
   };
 
-  // const SliderComponent = dynamic(() => import("react-slick"));
+
   const SliderComponent =
     // @ts-ignore
     getRuntime().name === "node" ? Slider.default : Slider;
-  // const SliderComponent =
-  //   typeof window === "undefined" ? Slider.default : Slider;
-  // const SliderComponent = Slider;
-  // const SliderComponent = Slider.default;
-  // console.log(Slider);
 
   return (
     <>
-      <div className="mx-auto px-5 md:px-14 bg-gray-100 pt-8 pb-24">
-        <h2 className="section text-3xl text-center tracking-tight font-bold">
-          <a id="gallery">{title}</a>
-        </h2>
+      <div className="mx-auto pt-20 pb-20 section">
         <SliderComponent
           {...settings}
-          className="drop-shadow sm:px-3 sm:mx-3  md:px-5"
+          className="drop-shadow sm:px-3 sm:mx-3 md:px-5"
         >
           {photoDivs}
         </SliderComponent>
@@ -179,60 +175,3 @@ const Carousel = ({ title, photoGallery }: CarouselProps) => {
 };
 
 export default Carousel;
-
-type DynamicOptions = {
-  componentName?: string;
-  loading?: () => React.JSX.Element;
-};
-
-/**
- * const SliderComponent = dynamic(() => import("react-slick"), {
- *   loading: () => <h1>hi</h1>,
- * });
- *
- * @param importComponent
- * @param options
- * @returns
- */
-function dynamic(
-  importComponent: () => Promise<any>,
-  options?: DynamicOptions
-) {
-  const resolvedOptions = {
-    componentName: "default",
-    loading: () => <></>,
-    ...options,
-  };
-
-  class AsyncComponent extends React.Component<any, any> {
-    constructor(props: React.JSX.Element) {
-      super(props);
-
-      this.state = {
-        component: null,
-      };
-    }
-
-    async componentDidMount() {
-      const component = await importComponent();
-
-      if (!component[resolvedOptions.componentName]) {
-        console.error(
-          `Exported function "${resolvedOptions.componentName}" does not exist for dynamic import: ${importComponent}`
-        );
-      }
-
-      this.setState({
-        component: component[resolvedOptions.componentName],
-      });
-    }
-
-    render() {
-      const C = this.state.component;
-
-      return C ? <C {...this.props} /> : resolvedOptions.loading();
-    }
-  }
-
-  return AsyncComponent;
-}

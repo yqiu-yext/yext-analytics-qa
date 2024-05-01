@@ -1,11 +1,46 @@
+@import "@yext/pages-components/style.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 .centered-container {
-  @apply mx-auto px-5 md:px-14 max-w-screen-xl mt-8 mb-16;
+  @apply mx-auto px-5 md:px-14 xl:max-w-screen-xl 2xl:max-w-screen-2xl;
 }
 
-.section {
+section {
   @apply mt-8 mb-16;
+}
+
+.primary-cta {
+  @apply bg-sky-500 hover:bg-sky-600;
+}
+
+.secondary-cta {
+  @apply bg-sky-700 hover:bg-sky-800;
+}
+
+h1 {
+  @apply text-4xl py-8 font-bold;
+}
+
+h2 {
+  @apply text-3xl py-6;
+}
+
+h3 {
+  @apply text-2xl py-4;
+}
+
+.HoursStatus {
+  @apply font-bold;
+}
+
+.mapPin {
+  @apply w-12 h-12 drop-shadow-md;
+  transition: all .2s ease-in-out;
+}
+
+.mapPin:hover {
+  transform: scale(1.2);
+  cursor: pointer;
 }
