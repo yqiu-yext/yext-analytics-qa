@@ -4,14 +4,8 @@ import Header from "./Header";
 import { AnalyticsProvider } from "@yext/pages-components";
 import { TemplateDataProvider } from "../common/useTemplateData";
 import type { TemplateRenderProps, BaseProfile } from "../types/entities";
-import config from "../config";
-import { ConfigurationProvider } from "@yext/sites-react-components";
 import { cn } from "../lib/utils";
-import {
-  provideHeadless,
-  Environment,
-  SearchHeadlessProvider,
-} from "@yext/search-headless-react";
+import { useExposeEnableYAFunction } from "../common/useExposeEnableYAFunction";
 
 interface MainProps {
   data: TemplateRenderProps<BaseProfile>;
@@ -26,7 +20,7 @@ const Main = (props: MainProps) => {
         apiKey={YEXT_PUBLIC_EVENTS_API_KEY}
         currency="USD"
         templateData={props.data}
-        requireOptIn={true}
+        // requireOptIn={true}
         enableDebugging={YEXT_PUBLIC_ENV === "dev"}
       >
         <MainInternal {...props} />
@@ -36,6 +30,7 @@ const Main = (props: MainProps) => {
 };
 
 const MainInternal = ({ data, children, containerClassName }: MainProps) => {
+  useExposeEnableYAFunction();
   return (
     <TemplateDataProvider value={data}>
       <Header />
