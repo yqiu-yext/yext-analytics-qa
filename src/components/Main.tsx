@@ -20,7 +20,7 @@ const Main = (props: MainProps) => {
         apiKey={YEXT_PUBLIC_EVENTS_API_KEY}
         currency="USD"
         templateData={props.data}
-        // requireOptIn={true}
+        requireOptIn={true}
         enableDebugging={YEXT_PUBLIC_ENV === "dev"}
       >
         <MainInternal {...props} />
