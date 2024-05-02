@@ -42,6 +42,7 @@ import {
                                     <Link 
                                         href={`https://www.google.com/maps/dir/?api=1&destination=${name} ${address.line1} ${address.city} ${address.region} ${address.postalCode}`}
                                         eventName="getdirections"
+                                        amount={10}
                                     >
                                         Get Directions
                                     </Link>
@@ -51,6 +52,7 @@ import {
                                     <Link 
                                         href="" 
                                         eventName="call"
+                                        amount={2}
                                     >
                                         {formatPhoneNumber(mainPhone)}
                                     </Link>
@@ -61,7 +63,6 @@ import {
                                         <Link 
                                             className="primary-cta"
                                             key={cta.label}
-                                            eventName={`cta_click-${cta.label}`}
                                             cta={{
                                                 link: cta.link,
                                                 linkType: cta.linkType,
