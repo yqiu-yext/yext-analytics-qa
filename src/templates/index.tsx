@@ -43,6 +43,7 @@ export const config: TemplateConfig = {
       "paymentOptions",
       "emails",
       "yextDisplayCoordinate",
+      "c_heroCTAs"
     ],
     localization: {
       locales: [YEXT_PUBLIC_LOCATION_LOCALE_CODE],

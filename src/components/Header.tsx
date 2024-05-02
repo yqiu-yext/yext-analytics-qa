@@ -40,28 +40,14 @@ const Header = ({ data }: HeaderProps) => {
                 alt=""
               />
             </a>
-            <div className="hidden lg:flex lg:gap-x-12">
-              {/* {navigation.map((item) => (
-                <Link 
-                  href={item.href}  
-                  key={item.name}
-                  className="tracking-tight font-bold leading-6 text-gray-900 hover:text-gray-700"
-                  eventName={`cta Click_${item.name}`}
-                  >
-                  {item.name}
-                </Link>
-              ))} */}
-            </div>
           </div>
-          {/* <div className="flex justify-around space-x-8 p-2 border border-gray-300 rounded-md shadow-sm"> */}
-          {/* <Link className="hover:underline hover:text-blue-500" href="/stores">
-            Po
-          </Link> */}
-          <AnalyticsScopeProvider name="sourcecode">
-            <div>
-              <a className="tracking-wide font-bold flex space-x-3 border p-3 bg-gray-200 rounded-md shadow-sm hover:bg-gray-300" href="https://github.com/lymarrie/yext-analytics-qa"><div>View Source Code</div><Code size={24} /></a>
-            </div>
-          </AnalyticsScopeProvider>
+          <Link
+            className="primary-cta flex space-x-3 items-center"
+            href="https://github.com/lymarrie/yext-analytics-qa"
+            eventName="sourcecode"
+          >
+            <span>View Source Code</span><Code size={24} />
+          </Link>
         </nav>
       </header>
     </AnalyticsScopeProvider>

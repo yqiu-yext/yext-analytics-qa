@@ -17,38 +17,34 @@ interface MainProps {
 
 const Main = (props: MainProps) => {
   return (
-    // <ConfigurationProvider value={config}>
-      <AnalyticsProvider 
-        apiKey={YEXT_PUBLIC_EVENTS_API_KEY}
-        currency="USD"
-        templateData={props.data}
-        requireOptIn={true}
-        enableDebugging={YEXT_PUBLIC_ENV === "dev"}
-      >
-        <MainInternal {...props} />
-      </AnalyticsProvider>
-    // </ConfigurationProvider>
+    <AnalyticsProvider 
+      apiKey={YEXT_PUBLIC_EVENTS_API_KEY}
+      currency="USD"
+      templateData={props.data}
+      // requireOptIn={true}
+      enableDebugging={YEXT_PUBLIC_ENV === "dev"}
+    >
+      <MainInternal {...props} />
+    </AnalyticsProvider>
   );
 };
 
 const MainInternal = ({ data, children, containerClassName }: MainProps) => {
-  useExposeEnableYAFunction();
-  const [consentGiven, setConsentGiven] = useState(false);
+  // useExposeEnableYAFunction();
+  // const [consentGiven, setConsentGiven] = useState(false);
 
-  const handleConsent = () => {
-      if (window.enableYextAnalytics) {
-          window.enableYextAnalytics();
-          setConsentGiven(true);
-      }
-  };
+  // const handleConsent = () => {
+  //     if (window.enableYextAnalytics) {
+  //         window.enableYextAnalytics();
+  //         setConsentGiven(true);
+  //     }
+  // };
   return (
     <TemplateDataProvider value={data}>
       <Header />
       <main className={cn("min-h-screen", containerClassName)}>
         {children}
-        {/* <Footer /> */}
-        {!consentGiven && <ConsentBanner onConsent={handleConsent} />}
-
+        {/* {!consentGiven && <ConsentBanner onConsent={handleConsent} />} */}
       </main>
     </TemplateDataProvider>
   );

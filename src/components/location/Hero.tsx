@@ -5,7 +5,7 @@ import StarRating from "../StarRating";
 import Hours from "../Hours";
 import { 
     AnalyticsScopeProvider,
-    Link 
+    Link, 
 } from "@yext/pages-components";
 
   
@@ -17,6 +17,7 @@ import {
     const neighborhood = document.neighborhood;
     const address = document.address;
     const mainPhone = document.mainPhone;
+    const ctas = document.c_heroCTAs;
   
     return (
         <>
@@ -36,18 +37,40 @@ import {
                                     <div>{address.city}, {address.region}</div>
                                 </div>
                             </div>
-                            <AnalyticsScopeProvider name="phone">
-                                <div id="Phone" className="flex space-x-3 items-center">
-                                    <Phone size={24} />
-                                        <Link href="">
-                                            {formatPhoneNumber(mainPhone)}
-                                        </Link>
-                                </div>
-                            </AnalyticsScopeProvider>
+                            <div id="Driving Directions" className="flex space-x-3 items-center">
+                                <Car size={24} />
+                                    <Link 
+                                        href={`https://www.google.com/maps/dir/?api=1&destination=${name} ${address.line1} ${address.city} ${address.region} ${address.postalCode}`}
+                                        eventName="getdirections"
+                                    >
+                                        Get Directions
+                                    </Link>
+                            </div>
+                            <div id="Phone" className="flex space-x-3 items-center">
+                                <Phone size={24} />
+                                    <Link 
+                                        href="" 
+                                        eventName="call"
+                                    >
+                                        {formatPhoneNumber(mainPhone)}
+                                    </Link>
+                            </div>
                             <AnalyticsScopeProvider name="ctas">
                                 <div id="CTAs" className="flex flex-col text-center space-y-3 py-4 w-full sm:max-w-fit">
-                                    <Link className="rounded-full w-full sm:w-auto bg-black px-8 py-2.5 text-lg font-semibold text-white shadow-sm hover:bg-gray-600 hover:duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" href="#">Get Directions</Link>
-                                    <Link className="rounded-full w-full sm:w-auto bg-black px-8 py-2.5 text-lg font-semibold text-white shadow-sm hover:bg-gray-600 hover:duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600" href="#">Speak With An Expert</Link>
+                                    {ctas.map(cta => (
+                                        <Link 
+                                            className="primary-cta"
+                                            key={cta.label}
+                                            eventName={`cta_click-${cta.label}`}
+                                            cta={{
+                                                link: cta.link,
+                                                linkType: cta.linkType,
+                                                label: cta.label
+                                            }}
+                                        >
+                                            {cta.label}
+                                        </Link>
+                                    ))}
                                 </div>
                             </AnalyticsScopeProvider>
                             {description && 
