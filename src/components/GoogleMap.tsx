@@ -35,17 +35,9 @@ const StaticMap = () => {
 
   return (
     <>
-      {(yextDisplayCoordinate && YEXT_PUBLIC_MAPS_API_KEY) &&
+      {(yextDisplayCoordinate) &&
         <div className="mt-20 space-y-6">
-          <div style={{ height: '500px', width: '100%'}} >
-            <GoogleMapReact
-              bootstrapURLKeys={{ key: `${YEXT_PUBLIC_MAPS_API_KEY}` }}
-              defaultCenter={defaultProps.center}
-              defaultZoom={defaultProps.zoom}
-            >
-              <MapMarker/>
-            </GoogleMapReact>
-          </div>
+          this is a map
         </div>
       }
     </>

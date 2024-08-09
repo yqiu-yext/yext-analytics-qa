@@ -22,7 +22,7 @@ const Main = (props: MainProps) => {
       currency="USD"
       templateData={props.data}
       // requireOptIn={true}
-      enableDebugging={YEXT_PUBLIC_ENV === "dev"}
+      enableDebugging={false}
     >
       <MainInternal {...props} />
     </AnalyticsProvider>
