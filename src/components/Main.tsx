@@ -18,7 +18,7 @@ interface MainProps {
 const Main = (props: MainProps) => {
   return (
     <AnalyticsProvider 
-      apiKey={YEXT_PUBLIC_EVENTS_API_KEY}
+      apiKey={"301098e9a3da179b1329d40d61819a05"}
       currency="USD"
       templateData={props.data}
       // requireOptIn={true}
