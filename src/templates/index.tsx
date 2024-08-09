@@ -46,7 +46,7 @@ export const config: TemplateConfig = {
       "c_heroCTAs"
     ],
     localization: {
-      locales: [YEXT_PUBLIC_LOCATION_LOCALE_CODE],
+      locales: ["en_US"],
     },
   },
 };
